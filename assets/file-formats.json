@@ -1,0 +1,269 @@
+[
+	{
+		"name": "⭐ Downloads",
+		"fileType": "download",
+		"fileExtensions": [],
+		"mimeTypes": []
+	},
+	{
+		"name": "Images",
+		"fileType": "image",
+		"fileExtensions": [
+			".avif",
+			".bmp",
+			".gif",
+			".ico",
+			".cur",
+			".jpg",
+			".jpeg",
+			".jfif",
+			".pjpeg",
+			".pjp",
+			".png",
+			".svg",
+			".tif",
+			".tiff",
+			".webp"
+		],
+		"mimeTypes": [
+			"image/avif",
+			"image/bmp",
+			"image/gif",
+			"image/x-icon",
+			"image/jpeg",
+			"image/png",
+			"image/svg+xml",
+			"image/tiff",
+			"image/webp"
+		]
+	},
+	{
+		"name": "Videos",
+		"fileType": "video",
+		"fileExtensions": [".avi", ".mp4", ".mpeg", ".ogv", ".ts", ".webm", ".3gp", ".3g2"],
+		"mimeTypes": [
+			"video/x-msvideo",
+			"video/mp4",
+			"video/mpeg",
+			"video/ogg",
+			"video/mp2t",
+			"video/webm",
+			"video/3gpp",
+			"video/3gpp2"
+		]
+	},
+	{
+		"name": "Audio",
+		"fileType": "audio",
+		"fileExtensions": [".aac", ".mid", ".midi", ".mp3", ".oga", ".opus", ".wav", ".weba"],
+		"mimeTypes": [
+			"audio/aac",
+			"audio/midi",
+			"audio/x-midi",
+			"audio/mpeg",
+			"audio/ogg",
+			"audio/opus",
+			"audio/wav",
+			"audio/webm"
+		]
+	},
+	{
+		"name": "Documents",
+		"fileType": "document",
+		"fileExtensions": [
+			".abw",
+			".doc",
+			".docx",
+			".odt",
+			".pdf",
+			".rtf",
+			".txt",
+			".xls",
+			".xlsx",
+			".ods",
+			".ppt",
+			".pptx",
+			".odp"
+		],
+		"mimeTypes": [
+			"application/x-abiword",
+			"application/msword",
+			"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+			"application/vnd.oasis.opendocument.text",
+			"application/pdf",
+			"application/rtf",
+			"text/plain",
+			"application/vnd.ms-excel",
+			"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+			"application/vnd.oasis.opendocument.spreadsheet",
+			"application/vnd.ms-powerpoint",
+			"application/vnd.openxmlformats-officedocument.presentationml.presentation",
+			"application/vnd.oasis.opendocument.presentation"
+		]
+	},
+	{
+		"name": "Archives",
+		"fileType": "archive",
+		"fileExtensions": [".7z", ".arc", ".bz", ".bz2", ".gz", ".gzip", ".jar", ".rar", ".tar", ".zip", ".zst"],
+		"mimeTypes": [
+			"application/x-7z-compressed",
+			"application/x-freearc",
+			"application/x-bzip",
+			"application/x-bzip2",
+			"application/gzip",
+			"application/java-archive",
+			"application/vnd.rar",
+			"application/x-tar",
+			"application/zip",
+			"application/zstd"
+		]
+	},
+	{
+		"name": "Text & Code",
+		"fileType": "text",
+		"fileExtensions": [
+			".css",
+			".csv",
+			".html",
+			".htm",
+			".js",
+			".mjs",
+			".json",
+			".jsonld",
+			".xml",
+			".yaml",
+			".yml",
+			".ts",
+			".tsx",
+			".jsx",
+			".php",
+			".py",
+			".c",
+			".cpp",
+			".h",
+			".java",
+			".rb",
+			".rs",
+			".go",
+			".swift"
+		],
+		"mimeTypes": [
+			"text/css",
+			"text/csv",
+			"text/html",
+			"text/javascript",
+			"application/json",
+			"application/ld+json",
+			"application/xml",
+			"text/xml",
+			"text/yaml",
+			"application/x-httpd-php",
+			"text/x-python",
+			"text/x-c",
+			"text/x-c++",
+			"text/x-java-source",
+			"text/x-ruby",
+			"text/x-rust",
+			"text/x-go",
+			"text/x-swift"
+		]
+	},
+	{
+		"name": "Fonts",
+		"fileType": "font",
+		"fileExtensions": [".eot", ".otf", ".ttf", ".woff", ".woff2"],
+		"mimeTypes": ["application/vnd.ms-fontobject", "font/otf", "font/ttf", "font/woff", "font/woff2"]
+	},
+	{
+		"name": "Applications",
+		"fileType": "application",
+		"fileExtensions": [".exe", ".msi", ".dmg", ".pkg", ".deb", ".rpm", ".apk", ".appimage", ".bin", ".dat"],
+		"mimeTypes": [
+			"application/x-msdownload",
+			"application/x-ms-installer",
+			"application/x-apple-diskimage",
+			"application/vnd.debian.binary-package",
+			"application/x-rpm",
+			"application/vnd.android.package-archive",
+			"application/vnd.appimage",
+			"application/octet-stream"
+		]
+	},
+	{
+		"name": "E-books",
+		"fileType": "ebook",
+		"fileExtensions": [".epub", ".mobi", ".azw", ".azw3"],
+		"mimeTypes": ["application/epub+zip", "application/vnd.amazon.mobi8-ebook", "application/vnd.amazon.ebook"]
+	},
+	{
+		"name": "Database",
+		"fileType": "database",
+		"fileExtensions": [".sql", ".db", ".sqlite", ".mdb", ".accdb"],
+		"mimeTypes": ["application/sql", "application/x-sqlite3", "application/x-msaccess"]
+	},
+	{
+		"name": "Configuration",
+		"fileType": "config",
+		"fileExtensions": [".conf", ".cfg", ".ini", ".properties", ".toml", ".env"],
+		"mimeTypes": ["text/plain"]
+	},
+	{
+		"name": "Vector Graphics",
+		"fileType": "vector",
+		"fileExtensions": [".ai", ".eps", ".ps", ".psd", ".sketch", ".fig"],
+		"mimeTypes": [
+			"application/postscript",
+			"application/vnd.adobe.illustrator",
+			"application/vnd.adobe.photoshop",
+			"application/vnd.sketch"
+		]
+	},
+	{
+		"name": "3D Models",
+		"fileType": "3d",
+		"fileExtensions": [".stl", ".obj", ".fbx", ".dae", ".3ds", ".blend"],
+		"mimeTypes": ["model/stl", "model/obj", "application/octet-stream"]
+	},
+	{
+		"name": "Virtual Machines",
+		"fileType": "virtualization",
+		"fileExtensions": [".ova", ".ovf", ".vmdk", ".vhd", ".vhdx"],
+		"mimeTypes": ["application/ovf", "application/x-vmdk", "application/x-vhd"]
+	},
+	{
+		"name": "Container Images",
+		"fileType": "container",
+		"fileExtensions": [".docker", ".tar.gz", ".tgz"],
+		"mimeTypes": ["application/vnd.docker.container.image.v1+tar", "application/gzip"]
+	},
+	{
+		"name": "Certificates",
+		"fileType": "certificate",
+		"fileExtensions": [".pem", ".crt", ".cer", ".key", ".pfx", ".p12"],
+		"mimeTypes": ["application/x-pem-file", "application/x-x509-ca-cert", "application/pkcs8", "application/pkcs12"]
+	},
+	{
+		"name": "Scripts",
+		"fileType": "script",
+		"fileExtensions": [".sh", ".bash", ".zsh", ".fish", ".ps1", ".bat", ".cmd"],
+		"mimeTypes": ["application/x-sh", "text/x-shellscript", "application/x-powershell", "application/x-msdos-program"]
+	},
+	{
+		"name": "Markup",
+		"fileType": "markup",
+		"fileExtensions": [".md", ".markdown", ".rst", ".tex", ".latex"],
+		"mimeTypes": ["text/markdown", "text/x-rst", "text/x-tex"]
+	},
+	{
+		"name": "Calendar",
+		"fileType": "calendar",
+		"fileExtensions": [".ics", ".vcs"],
+		"mimeTypes": ["text/calendar", "text/x-vcalendar"]
+	},
+	{
+		"name": "Contacts",
+		"fileType": "contact",
+		"fileExtensions": [".vcf"],
+		"mimeTypes": ["text/vcard"]
+	}
+]

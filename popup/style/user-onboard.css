@@ -1,0 +1,119 @@
+* {
+	box-sizing: border-box;
+}
+
+svg {
+	height: 1.4em;
+	vertical-align: middle;
+	fill: var(--icon-clr);
+	cursor: pointer;
+}
+
+:host {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.8em;
+	padding: 1em;
+	margin: 0.8em;
+	border-radius: 0.5em;
+	box-shadow: var(--card);
+	background-color: light-dark(white, hsl(0, 0%, 12%));
+	height: 580px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+
+ul.professions {
+	padding-left: 0;
+	margin-block: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4em 0.8em;
+
+	& li {
+		list-style-type: none;
+	}
+
+	& label {
+		display: inline-block;
+		border-radius: 1em;
+		font-size: 0.9rem;
+		padding: 0.5em;
+		color: hsl(var(--hue), 100%, 30%);
+		border: 1px solid hsl(var(--hue), 100%, 40%);
+		white-space: nowrap;
+		cursor: pointer;
+
+		&:has(input:checked) {
+			background-color: hsl(var(--hue), 100%, 84%);
+		}
+	}
+}
+
+input[name="profession"] {
+	width: 50%;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	border: var(--border);
+}
+
+comparison-table {
+	display: block;
+	position: relative;
+
+	& .recommended {
+		position: absolute;
+		padding: 0.4em 0.6em;
+		border-radius: 1em;
+		background-color: rgb(111, 0, 255);
+		color: gold;
+		right: 1.5em;
+		top: -1.5em;
+	}
+}
+
+table {
+	font-size: 14px;
+	border-collapse: collapse;
+	width: 100%;
+	background-color: var(--block-bgc);
+
+	& td,
+	& th {
+		border: 1px solid light-dark(hsl(0, 1%, 85%), hsl(0, 1%, 28%));
+		text-align: left;
+		padding: 8px;
+	}
+
+	& tr:nth-child(even) {
+		background-color: light-dark(hsl(0, 1%, 85%), hsl(0, 1%, 28%));
+	}
+
+	& kbd {
+		font-weight: bold;
+		font-size: 0.9rem;
+	}
+}
+
+select {
+	padding: 0.4em;
+	border: var(--border);
+	border-radius: 0.5em;
+}
+
+button[type="submit"] {
+	border: none;
+	display: block;
+	width: 60%;
+	padding-block: 0.4em;
+	margin-inline: auto;
+	margin-block: 0.5em;
+	color: #fff;
+	border-radius: 0.5em;
+	box-shadow: var(--card);
+	background-image: linear-gradient(45deg, rgb(0, 89, 255), magenta);
+	text-align: center;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+}

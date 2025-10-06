@@ -1,0 +1,54 @@
+{
+	"manifest_version": 3,
+	"minimum_chrome_version": "126",
+	"offline_enabled": true,
+	"name": "AI Download Butler - AI File Organizer",
+	"short_name": "DownloadButler",
+	"description": "Auto-categorizes downloads into OS folders by AI. Browse files by date,domain,folder in built-in panel. Your personal butler!",
+	"version": "0.0.1",
+	"author": "Brahmastra Techeq",
+	"icons": {
+		"128": "icon-128.png",
+		"16": "icon.png"
+	},
+
+	"options_page": "options/index.html",
+
+	"action": {
+		"default_title": "AI Download Butler",
+		"default_popup": "popup/index.html"
+	},
+
+	"background": {
+		"service_worker": "background/background.js",
+		"type": "module"
+	},
+
+	"commands": {
+		"_execute_action": {
+			"suggested_key": {
+				"default": "Alt+M",
+				"windows": "Alt+M",
+				"mac": "Alt+M",
+				"linux": "Alt+M"
+			}
+		},
+
+		"screenshot": {
+			"suggested_key": {
+				"default": "Alt+S"
+			},
+			"description": "Capture screenshot"
+		}
+	},
+
+	"web_accessible_resources": [
+		{
+			"resources": ["scripts/*"],
+			"matches": ["<all_urls>"]
+		}
+	],
+
+	"permissions": ["contextMenus", "downloads", "scripting", "storage"],
+	"host_permissions": ["<all_urls>"]
+}

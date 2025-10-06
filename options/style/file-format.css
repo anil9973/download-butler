@@ -1,0 +1,142 @@
+fileformats-folders-container {
+	display: flex;
+	column-gap: 0.5em;
+	padding: 1em;
+}
+
+file-format-list {
+	flex-basis: 12%;
+	border-radius: 0.5em;
+	border: var(--border);
+	box-shadow: var(--card);
+	background-color: light-dark(white, hsl(0, 0%, 10%));
+
+	& > details {
+		padding: 0.5em;
+		border-radius: 0.5em;
+		border-bottom: var(--border);
+
+		&[open] {
+			border: 2px ridge var(--main-clr);
+			background-color: light-dark(whitesmoke, hsl(0, 0%, 15%));
+		}
+
+		& summary {
+			padding-left: 1em;
+			cursor: pointer;
+		}
+	}
+
+	& ul {
+		padding-left: 0;
+		margin-bottom: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.3em;
+
+		& li {
+			list-style-type: none;
+		}
+	}
+}
+
+folders-table {
+	flex-grow: 1;
+
+	& > button {
+		display: block;
+		width: 80%;
+		margin-top: 0.5em;
+		margin-inline: auto;
+		font-weight: bold;
+		border-radius: 0.5em;
+		padding: 0.4em;
+		box-shadow: var(--card);
+		background-image: linear-gradient(to right, #fc354c 0%, #0abfbc 51%, #fc354c 100%);
+		cursor: pointer;
+	}
+}
+
+table {
+	font-size: 15px;
+	border-collapse: collapse;
+	width: 100%;
+	background-color: light-dark(white, black);
+
+	& td,
+	& th {
+		border: 1px solid light-dark(hsl(0, 1%, 85%), hsl(0, 1%, 28%));
+		text-align: left;
+		padding: 8px;
+	}
+
+	& tr:nth-child(even) {
+		background-color: light-dark(hsl(0, 1%, 85%), hsl(0, 1%, 28%));
+	}
+
+	& td:first-child {
+		width: 28ch;
+
+		& + td {
+			width: 33ch;
+		}
+	}
+
+	& input {
+		width: 100%;
+		padding: 0.4em;
+		border: none;
+		background-color: inherit;
+
+		&[name="name"] {
+			font-weight: bold;
+		}
+	}
+
+	& textarea {
+		field-sizing: content;
+		width: 100%;
+		padding: 0.4em;
+		border-radius: 0.5em;
+	}
+
+	& select {
+		padding: 0.4em;
+		border-radius: 0.5em;
+		border: var(--border);
+	}
+}
+
+.chip-item {
+	display: inline-block;
+	border-radius: 1em;
+	font-size: 0.9rem;
+	padding: 0.5em;
+	color: hsl(var(--hue), 100%, 30%);
+	border: 1px solid hsl(var(--hue), 100%, 40%);
+	background-color: hsl(var(--hue), 100%, 84%);
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+/* Permission dialog */
+#permission-dialog {
+	width: 55ch;
+	text-align: center;
+
+	& > svg {
+		width: 5em;
+		height: 5em;
+		margin-inline: auto;
+		padding: 1em;
+		border-radius: 50%;
+		background-color: hsl(300, 100%, 25%, 0.2);
+	}
+
+	& button.secondary {
+		background-color: transparent;
+		border: var(--border);
+		box-shadow: unset;
+		margin-right: 1em;
+	}
+}
