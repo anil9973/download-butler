@@ -14,3 +14,18 @@ export const THEME_URL = "https://crxextstatic.blob.core.windows.net/themes/",
 	WEBSTORE_ERR = "The extensions gallery cannot be scripted.",
 	HOST_ACCESS_ERR = "Extension manifest must request permission to access this host.",
 	NOT_AVAILABLE = "Not available";
+
+export const monthNames = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];

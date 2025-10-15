@@ -12,10 +12,11 @@ export class SubFolder {
 export class FolderTreeBuilder {
 	constructor() {}
 
+	/** @param {string} fileType */
 	async build(fileType) {
 		const keyName = fileType + "FolderTree";
-		const { [keyName]: cacheFolderTree } = await getStore(keyName);
-		if (cacheFolderTree) return cacheFolderTree;
+		// const { [keyName]: cacheFolderTree } = await getStore(keyName); // CUrrently disable for testing
+		// if (Array.isArray(cacheFolderTree) && cacheFolderTree.length !== 0) return cacheFolderTree;
 
 		const folders = await pipeFolderList(fileType);
 		const promises = folders.map(async (folder) => {
@@ -30,7 +31,8 @@ export class FolderTreeBuilder {
 		});
 
 		const folderTree = await Promise.all(promises);
-		setStore({ [keyName]: folderTree });
+		await setStore({ [keyName]: folderTree });
+		return folderTree;
 	}
 
 	/** @param {FileSystemDirectoryHandle} dirHandle */

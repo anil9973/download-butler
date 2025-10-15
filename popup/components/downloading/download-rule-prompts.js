@@ -1,17 +1,29 @@
 import { html } from "../../../collections/js/om.compact.js";
 
-export class DownloadRulePrompts extends HTMLElement {
-	constructor(fileType) {
+export class DownloadRulePromptField extends HTMLElement {
+	/** @param {string} fileType @param {import("./downloading.js").UserLearningInstruction} userCorrections */
+	constructor(fileType, userCorrections) {
 		super();
 		this.fileType = fileType;
+		this.userCorrections = userCorrections;
 	}
 
 	async saveInstruction({ currentTarget }) {
 		const instruction = currentTarget.previousElementSibling.textContent.trim();
 		const userInstructions = (await getStore("userInstructions")).userInstructions ?? {};
 		userInstructions[this.fileType].push(instruction);
-		setStore({ userInstructions });
-		fireEvent(this, "instruction", instruction);
+		this.userCorrections.instruction = instruction;
+		await setStore({ userInstructions });
+		await chrome.storage.session.set({ userCorrections: { instruction: instruction } });
+		fireEvent(this, "instruction");
+	}
+
+	async startMicRecording() {
+		const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+		const recorder = new MediaRecorder(audioStream);
+		recorder.ondataavailable = ({ data }) => {
+			chunks.push(data);
+		};
 	}
 
 	render(instructionPrompts = []) {
@@ -22,6 +34,12 @@ export class DownloadRulePrompts extends HTMLElement {
 			<label class="card-header">
 				<atom-icon ico="routes" title=""></atom-icon>
 				<span>How should we handle similar files in the future?</span>
+				<atom-icon
+					ico="done"
+					title=""
+					style="float: right"
+					@click=${this.saveInstruction.bind(this)}
+					hidden></atom-icon>
 			</label>
 			<section>
 				<prompt-field>
@@ -37,8 +55,8 @@ export class DownloadRulePrompts extends HTMLElement {
 	async connectedCallback() {
 		const userInstructions = (await getStore("userInstructions")).userInstructions ?? {};
 		this.replaceChildren(this.render(userInstructions[this.fileType]));
-		$('atom-icon[ico="mic"]', this).ico = "send"; // Temp till mic implement
+		// $('atom-icon[ico="mic"]', this).ico = "send"; // Temp till mic implement
 	}
 }
 
-customElements.define("download-rule-prompts", DownloadRulePrompts);
+customElements.define("download-rule-prompt-field", DownloadRulePromptField);

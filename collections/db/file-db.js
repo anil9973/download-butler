@@ -4,7 +4,7 @@ import { connect, Store } from "./db.js";
 
 /**
  * @param {string} viewMode
- * @param {string} [filter]
+ * @param {string|string[]} [filter]
  * @returns {Promise<Map<String, DownloadFile[]>>}
  */
 export async function pipeDownloadFileList(viewMode, filter) {

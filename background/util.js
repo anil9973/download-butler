@@ -1,4 +1,10 @@
+import { escapeRx } from "../collections/js/constant.js";
+
 export const getCrtTab = async () => (await chrome.tabs.query({ currentWindow: true, active: true }))[0];
+
+export function fixFilename(filename) {
+	return filename.replace(escapeRx, "");
+}
 
 export function getDateTimeName() {
 	return new Date()

@@ -17,7 +17,7 @@ downloading-container {
 
 download-file-info,
 file-path-segments > ul,
-download-rule-prompts > section {
+download-rule-prompt-field > section {
 	padding: 0.5em;
 	border-radius: 0.5em;
 	box-shadow: var(--card);
@@ -32,6 +32,28 @@ download-file-info {
 		& > svg {
 			height: 2em;
 			width: 2em;
+		}
+	}
+
+	& .file-details {
+		width: -webkit-fill-available;
+
+		& .row {
+			display: flex;
+			justify-content: space-between;
+			padding: 2px;
+		}
+
+		& .file-name {
+			font-size: 0.9rem;
+			max-width: 32ch;
+			overflow-x: hidden;
+			line-clamp: 1;
+		}
+
+		& svg {
+			height: 1.2em;
+			width: 1.2em;
 		}
 	}
 
@@ -102,7 +124,7 @@ file-path-segments {
 	}
 }
 
-download-rule-prompts {
+download-rule-prompt-field {
 	& .or {
 		text-align: center;
 		color: gray;

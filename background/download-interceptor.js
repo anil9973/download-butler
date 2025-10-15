@@ -1,23 +1,15 @@
 import { collectDataForDownloadFile } from "../scripts/func-script.js";
 import { FSADownloadManager } from "./fsa-download-manager.js";
 import { injectFuncScript } from "./util.js";
+import { aiService } from "../AI/ai.js";
 
 /** @description when organization method = "downloads". Determining filename by AI */
 export class DownloadsOrganizer {
-	constructor() {
-		getStore("userProfile").then(({ userProfile }) => (this.userProfile = userProfile.profession));
-	}
+	constructor() {}
 
-	buildPromptText(srcUrl, pageData) {
-		return `Generate category for file: ${srcUrl}
-		User Profession: ${this.userProfile}
-		PageData: ${JSON.stringify(pageData)}`;
-	}
-
-	async generateFilePath(message) {
+	async generateFilePath(fileData, pageData) {
 		try {
-			/* const response = await this.generateFileMetadata(message);
-			return extractJSONContent(response); */
+			return await aiService.getFileMetadata(fileData, pageData);
 		} catch (error) {
 			console.error(error);
 		}
@@ -29,11 +21,11 @@ export class DownloadsOrganizer {
 	 */
 	onDeterminingFilename(item, suggest) {
 		if (item.byExtensionId === chrome.runtime.id) return;
-		injectFuncScript(collectDataForDownloadFile).then((pageData) => {
-			const promptText = this.buildPromptText(item.url, pageData);
-			this.generateFilePath(promptText).then((filename) => suggest({ filename, conflictAction: "uniquify" }));
+		const fileType = item.mime.slice(0, item.mime.indexOf("/"));
+		const fileData = { filename: item.filename, mime: item.mime, srcUrl: item.url, referrerUrl: item.referrer };
+		injectFuncScript(collectDataForDownloadFile, null, fileType, item.url).then((pageData) => {
+			this.generateFilePath(fileData, pageData).then((filename) => suggest({ filename, conflictAction: "uniquify" }));
 		});
-
 		return true;
 	}
 }
@@ -43,6 +35,7 @@ export class DownloadInterceptor {
 
 	/** @param {chrome.downloads.DownloadItem} downloadItem */
 	async onCreated(downloadItem) {
+		if (this.fsaDownloadManager?.fsaSrcUrl === downloadItem.url) return;
 		try {
 			await chrome.downloads.cancel(downloadItem.id);
 			await chrome.downloads.erase({ id: downloadItem.id });

@@ -1,6 +1,7 @@
 export const Store = {
 	FolderHandles: "FolderHandles",
 	DownloadFiles: "Files",
+	PatternRules: "PatternRules",
 };
 
 function onupgradeneeded({ target }) {
@@ -12,6 +13,8 @@ function onupgradeneeded({ target }) {
 	fileStore.createIndex("folder", "folder", { unique: false });
 	fileStore.createIndex("date", "date", { unique: false });
 	fileStore.createIndex("domain", "domain", { unique: false });
+
+	target.result.createObjectStore(Store.PatternRules, { keyPath: "id" });
 }
 
 /**@returns {Promise<IDBDatabase>} */

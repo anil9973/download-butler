@@ -3,16 +3,24 @@ import { html, map, react } from "../../../collections/js/om.compact.js";
 import { getDirHandle, getSubFolders } from "../../js/file-handle.js";
 
 export class FilePathSegments extends HTMLElement {
-	/** @param {string} fileType @param {string} folderPath */
-	constructor(fileType, folderPath) {
+	/**
+	 * @param {string} fileType
+	 * @param {string} folderPath
+	 * @param {import("./downloading.js").UserLearningInstruction} userCorrections
+	 */
+	constructor(fileType, folderPath, userCorrections) {
 		super();
 		this.fileType = fileType;
 		this.pathSegments = react(folderPath.split("/"));
+		this.userCorrections = userCorrections;
 	}
 
 	updateFolderPath() {
 		const updatedFolderPath = this.pathSegments.join("/");
-		fireEvent(this, "pathupdate", updatedFolderPath);
+		this.userCorrections.selectedPath = updatedFolderPath;
+		chrome.storage.session.set({ userCorrections: { selectedPath: updatedFolderPath } });
+		fireEvent(this, "pathupdate");
+		setTimeout(() => close(), 1000);
 	}
 
 	render() {
@@ -53,6 +61,7 @@ export class PathSegment extends HTMLElement {
 
 	async fetchOptions() {
 		/** @type {PathSegment} */
+		// @ts-ignore
 		const rootFolderElem = this.parentElement.firstElementChild;
 		if (rootFolderElem === this) {
 			const rootDirHandles = await getAllFolderHandles(this.fileType);

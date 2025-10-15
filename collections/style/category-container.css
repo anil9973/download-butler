@@ -39,9 +39,14 @@ download-file-card {
 	box-shadow: var(--card);
 	position: relative;
 
-	& atom-icon {
+	& .action-menu-wrapper:focus-within file-action-menu {
+		scale: 1;
+	}
+
+	& atom-icon[ico="menu"] {
 		position: absolute;
-		right: 0.5em;
+		right: 0;
+		top: 2px;
 	}
 
 	& .description {
@@ -79,6 +84,7 @@ file-action-menu {
 	top: 1.6em;
 	z-index: 10;
 	scale: 0;
+	border-radius: 0.4em;
 	box-shadow: var(--card);
 	background-color: light-dark(white, hsl(0, 0%, 20%));
 	transform-origin: top;

@@ -1,6 +1,8 @@
 import { AtomIcon } from "../../../collections/components/utils/atom-icon.js";
 import { TextSpan } from "../../../collections/components/utils/custom-elem.js";
+import { pipeDownloadFileList } from "../../../collections/db/file-db.js";
 import { DownloadFileInfo } from "../downloading/download-file-info.js";
+import { monthNames } from "../../../collections/js/constant.js";
 import { html } from "../../../collections/js/om.compact.js";
 // @ts-ignore
 import downloadsCss from "../../style/dwn-manager.css" with { type: "css" };
@@ -15,7 +17,9 @@ export class DatewiseDownloadList extends HTMLElement {
 
 	render() {
 		return html`<div>${this.date}</div>
-        <ul>${this.downloads.map((download)=> new DownloadFileInfo(download))}</ul>`;
+			<ul>
+				${this.downloads.map((download) => new DownloadFileInfo(download))}
+			</ul>`;
 	}
 
 	connectedCallback() {
@@ -30,19 +34,22 @@ export class DownloadsManager extends HTMLElement {
 		super();
 	}
 
-	render() {
-		const downloadMap = new Map([["Today", [{}, {}]], ["Yesterday", [{}, {}]]]);
+	render(downloadMap) {
 		const elements = [];
 		downloadMap.forEach((downloads, date) => elements.push(new DatewiseDownloadList(downloads, date)));
 		return elements;
 	}
 
-	connectedCallback() {
-		this.replaceChildren(...this.render());
+	async connectedCallback() {
+		const month = monthNames[new Date().getMonth()];
+		const filter = [`01 ${month}`, `30 ${month}`];
+		const collectionMap = await pipeDownloadFileList("date", filter);
+		this.replaceChildren(...this.render(collectionMap));
 
-        const button = document.createElement("button");
-        button.append(new AtomIcon("collection"), new TextSpan("Open collections"))
-        this.after(button)
+		const button = document.createElement("button");
+		button.append(new AtomIcon("collection"), new TextSpan("Open collections"));
+		this.after(button);
+		$on(button, "click", () => chrome.tabs.create({ url: "/collections/index.html" }));
 	}
 }
 

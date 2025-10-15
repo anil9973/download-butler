@@ -1,12 +1,13 @@
-export function collectDataForDownloadFile() {
-	const meta1 = document.head.querySelector('meta[name="description"]');
-	const description = meta1?.["content"] || document.title;
-
-	return { pageURL: location.href, pageTitle: document.title, description };
+/**
+ * @param {string} fileType
+ * @param {string} srcUrl
+ */
+export async function collectDataForDownloadFile(fileType, srcUrl) {
+	const { DownloadContextCollector } = await import(chrome.runtime.getURL("scripts/dwn-context-collector.js"));
+	return new DownloadContextCollector().collect(fileType, srcUrl);
 }
 
 export async function collectDataForFSADownloadFile(fileType, srcUrl) {
-	console.log(fileType, srcUrl);
 	const { DownloadContextCollector } = await import(chrome.runtime.getURL("scripts/dwn-context-collector.js"));
 	return new DownloadContextCollector().collect(fileType, srcUrl);
 }

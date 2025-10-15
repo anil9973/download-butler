@@ -1,8 +1,10 @@
 import { ActionSnackbar } from "../utils/action-snackbar.js";
 import { deleteDwnFilesInDb } from "../../db/file-db.js";
+import { DownloadFile } from "../../db/DownloadFile.js";
 import { html } from "../../js/om.compact.js";
 
 export class FileActionMenu extends HTMLElement {
+	/** @param {DownloadFile} downloadFile */
 	constructor(downloadFile) {
 		super();
 		this.downloadFile = downloadFile;

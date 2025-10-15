@@ -13,6 +13,7 @@ export function getFilterKeyRange(viewMode, filter) {
 
 		case "folder":
 			//need to set more filter
+			// Nested folder issue
 			filterKeyRange = IDBKeyRange.only(filter);
 			break;
 
