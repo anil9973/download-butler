@@ -1,5 +1,5 @@
-import { getAllPatternRules } from "../collections/db/pattern-db.js";
 import { initializeApp, getAI, getGenerativeModel, GoogleAIBackend, InferenceMode } from "./firebase-ai.js";
+import { getAllPatternRules } from "../collections/db/pattern-db.js";
 import { PromptBuilder } from "./prompt-builder.js";
 
 const firebaseConfig = {

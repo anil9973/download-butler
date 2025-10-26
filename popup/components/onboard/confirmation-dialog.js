@@ -32,7 +32,7 @@ export class ConfirmationDialog extends HTMLElement {
 
 	connectedCallback() {
 		this.replaceChildren(this.render());
-		this.organizationMethod === "downloads" ? setTimeout(() => close(), 3000) : chrome.runtime.openOptionsPage();
+		this.organizationMethod === "filesystem-access" ? chrome.runtime.openOptionsPage() : setTimeout(() => close(), 3000);
 	}
 }
 

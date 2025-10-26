@@ -5,6 +5,7 @@ import { react } from "../../../collections/js/om.compact.js";
 import { DownloadRulePromptField } from "./download-rule-prompts.js";
 // @ts-ignore
 import downloadingCss from "../../style/downloading.css" with { type: "css" };
+import { getCrtTab } from "../../../background/util.js";
 document.adoptedStyleSheets.push(downloadingCss);
 
 export class DownloadingContainer extends HTMLElement {
@@ -44,7 +45,7 @@ export class DownloadingContainer extends HTMLElement {
 		];
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		this.port = chrome.runtime.connect({ name: "download" });
 		this.port.onMessage.addListener((msg) => {
 			this.suggestedPath = msg.folderPath;
@@ -53,6 +54,8 @@ export class DownloadingContainer extends HTMLElement {
 			$on(this.children[1], "pathupdate", this.onInstructionUpdate.bind(this, msg.fileType, msg.domain));
 			$on(this.children[2], "instruction", this.onInstructionUpdate.bind(this, msg.fileType, msg.domain));
 		});
+		const tabId =( await getCrtTab()).id
+		chrome.action.setPopup({ popup: "popup/index.html", tabId})
 	}
 }
 

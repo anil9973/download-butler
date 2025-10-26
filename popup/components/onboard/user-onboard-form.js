@@ -40,6 +40,7 @@ export class UserOnboardForm extends HTMLElement {
 
 	onSubmit() {
 		this.remove();
+		console.log(this.organizationMethod);
 		document.body.appendChild(new ConfirmationDialog(this.organizationMethod));
 	}
 

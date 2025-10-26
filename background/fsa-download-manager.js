@@ -5,8 +5,8 @@ import { insertFileInCollectionDb } from "../collections/db/file-db.js";
 import { fixFilename, getCrtTab, injectFuncScript } from "./util.js";
 import { DownloadFile } from "../collections/db/DownloadFile.js";
 import { FolderTreeBuilder } from "./folder-tree-builder.js";
-import { aiService } from "../AI/ai.js";
 import { getDirHandle } from "../popup/js/file-handle.js";
+import { aiService } from "../AI/ai.js";
 
 export class FSADownloadManager {
 	constructor() {}
@@ -52,7 +52,7 @@ export class FSADownloadManager {
 	async downloadFile(item) {
 		const dirHandle = await getDownloadFolderHandle();
 		const filename = this.getFilenameFromUrl(item.url);
-		const isInDownloadFolder = false;
+		const isInDownloadFolder = true;
 		if (!dirHandle) throw new Error("Downloads folder required");
 
 		const browserDownload = () => {
@@ -95,12 +95,12 @@ export class FSADownloadManager {
 	/** @param {number} confidence @param {any} fileData */
 	async shouldShowPopup(confidence, fileData, settings) {
 		// Force show conditions
-		if (confidence < 0.6) return true; // 0.75 (Low for testing)
-		//   if (settings.alwaysConfirm) return true;
+		if (confidence < 0.75) return true;
+		//  if (settings.alwaysConfirm) return true;
 
 		// Throttle by checking cache
 		const cacheKey = `shown_${fileData.type}_${fileData.domain}_${new Date().getDate()}`;
-		const { hasShownToday } = await chrome.storage.session.get(cacheKey);
+		const hasShownToday = (await chrome.storage.session.get(cacheKey))[cacheKey];
 
 		if (!hasShownToday) {
 			await chrome.storage.session.set({ [cacheKey]: "true" });
@@ -129,7 +129,7 @@ export class FSADownloadManager {
 				const tabId = (await getCrtTab()).id;
 				await chrome.action.setPopup({ popup: `popup/index.html?dwn=${fileType}`, tabId });
 				await chrome.action.openPopup();
-				chrome.action.setPopup({ popup: "popup/index.html", tabId });
+				await chrome.action.setPopup({ popup: "popup/index.html", tabId });
 			} catch (error) {
 				reject(error);
 			}
