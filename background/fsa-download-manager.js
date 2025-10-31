@@ -60,11 +60,7 @@ export class FSADownloadManager {
 				try {
 					this.fsaSrcUrl = item.url;
 					const filePath = dirHandle.name + "/" + filename;
-					const downloadId = await chrome.downloads.download({
-						url: item.url,
-						filename: filePath,
-						saveAs: false,
-					});
+					const downloadId = await chrome.downloads.download({ url: item.url, filename: filePath, saveAs: false, });
 					this.fsaSrcUrl = null;
 
 					async function onDownloadUpdate(delta) {

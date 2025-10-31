@@ -19,11 +19,7 @@ export class DownloadRulePromptField extends HTMLElement {
 	}
 
 	async startMicRecording() {
-		const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-		const recorder = new MediaRecorder(audioStream);
-		recorder.ondataavailable = ({ data }) => {
-			chunks.push(data);
-		};
+		//TODO
 	}
 
 	render(instructionPrompts = []) {

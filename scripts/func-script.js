@@ -27,11 +27,3 @@ export async function insertCropper() {
 	const shotCropper = await createCropUI();
 	document.body.appendChild(shotCropper);
 }
-
-/*
-
-navigation.addEventListener("navigate", (event) => {
-	if (event.downloadRequest === null) return;
-	const targetElement = event.sourceElement;
-	// Get source element
-}); */

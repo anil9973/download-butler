@@ -1,3 +1,4 @@
+import { getCrtTab } from "../../../background/util.js";
 import { DownloadFileInfo } from "./download-file-info.js";
 import { FilePathSegments } from "./file-path-segments.js";
 import { CorrectionLearning } from "./correction-learning.js";
@@ -5,7 +6,6 @@ import { react } from "../../../collections/js/om.compact.js";
 import { DownloadRulePromptField } from "./download-rule-prompts.js";
 // @ts-ignore
 import downloadingCss from "../../style/downloading.css" with { type: "css" };
-import { getCrtTab } from "../../../background/util.js";
 document.adoptedStyleSheets.push(downloadingCss);
 
 export class DownloadingContainer extends HTMLElement {

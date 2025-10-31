@@ -1,7 +1,7 @@
 import { DownloadFile } from "../../../collections/db/DownloadFile.js";
 import { html } from "../../../collections/js/om.compact.js";
-import fileIcons from "../../../assets/file-icons.js";
 import { deleteDwnFilesInDb } from "../../../collections/db/file-db.js";
+import fileIcons from "../../../assets/file-icons.js";
 
 export class DownloadFileInfo extends HTMLElement {
 	/** @param {DownloadFile} fileData */
